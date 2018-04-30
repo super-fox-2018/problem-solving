@@ -18,26 +18,21 @@ Loop through i, i start from dayOpen until 31
 endfor
 */
 
-let member = [];
-const dayOpen = 7;
-const tono = 2;
-const anton = 4;
-const budi = 5;
-
-for (var i = dayOpen; i <= 31; i++) {
-	member = [];
-	if ((i - dayOpen) % tono === 0) {
-		member.push('Tono')
-	}
-	if ((i - dayOpen) % anton === 0) {
-		member.push('Anton')
-	}
-	if ((i - dayOpen) % budi === 0) {
-		member.push('Budi')
-	}
-	if (i % 5 === 0) {
-		console.log('Tanggal ' + i + ': Tempat Fitness Tutup')
-	} else {
-		console.log('Tanggal ' + i + ': ' + member.join(', '))
-	}
+function fitness(open, people) {
+  member = [];
+  for (var i = open; i <= 31; i++) {
+    member = [];
+    for (var j = 0; j < people.length; j++) {
+    	if ((i - open) % people[j][1] === 0) {
+      		member.push(people[j][0]);
+    	}
+    }
+    if (i % 5 === 0) {
+      console.log('Tanggal ' + i + ': Tempat Fitness Tutup');
+    } else {
+      console.log('Tanggal ' + i + ': ' + member.join(', '));
+    }
+  }
 }
+
+fitness(7, [['Tono', 2], ['Anton', 4], ['Budi', 5]]);
