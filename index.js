@@ -21,22 +21,25 @@
  * ENDFOR
  */
 
-const members = [{ name: 'Tono', multiple: 2}, {name: 'Anton', multiple: 4}, {name: 'Budi', multiple: 5}];
-const startingSchedule = 7;
-const closingMultiple = 5;
 
-for (let i = startingSchedule; i <= 31; i += 1) {
-  let output = `Tanggal ${i}: `;
-  if (i % closingMultiple === 0) {
-    output += 'Tempat Fitness Tutup';
-  } else {
-    let comingList = [];
-    for (let j = 0; j < members.length; j += 1) {
-      if ((i- startingSchedule) % members[j].multiple === 0) {
-        comingList.push(members[j].name);
+function fitnessSchedule(members, startingSchedule, closingMultiple) {
+  for (let i = startingSchedule; i <= 31; i += 1) {
+    let output = `Tanggal ${i}: `;
+    if (i % closingMultiple === 0) {
+      output += 'Tempat Fitness Tutup';
+    } else {
+      let comingList = [];
+      for (let j = 0; j < members.length; j += 1) {
+        if ((i - startingSchedule) % members[j].multiple === 0) {
+          comingList.push(members[j].name);
+        }
       }
+      output += comingList.join(', ');
     }
-    output += comingList.join(', ');
+    console.log(output);
   }
-  console.log(output);
 }
+
+const members = [{ name: 'Tono', multiple: 2}, { name: 'Anton', multiple: 4 }, { name: 'Budi', multiple: 5 }];
+
+fitnessSchedule(members, 7, 5);
